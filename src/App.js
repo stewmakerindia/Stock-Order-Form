@@ -79,25 +79,25 @@ function App() {
   };
 
   const createWhatsAppMessage = () => {
-    const list = items.filter(i => i.qty > 0).map(i => `{i.name}: {i.qty} {i.unit}`).join("\n");
+    const list = items.filter(i => i.qty > 0).map(i => `${i.name}: ${i.qty} ${i.unit}`).join("\n");
     const heading = mode === "Stock Status" ? "🧺 Stock Status Report" : "🛒 Stock Order Form";
-    const text = encodeURIComponent(`{heading} ({date}):\n{list}`);
-    return `https://wa.me/?text={text}`;
+    const text = encodeURIComponent(`${heading} (${date}):\n${list}`);
+    return `https://wa.me/?text=${text}`;
   };
 
   return (
     <>
       <div className="header">
         <h2>Stock Order Form</h2>
-        <img src="logo.jpg" alt="StewMaker Logo" style={ height: '40px' } />
+        <img src="logo.jpg" alt="StewMaker Logo" style={{ height: '40px' }} />
       </div>
       <div className="container">
         <label><strong>Date:</strong>
-          <input type="date" value={date} onChange={e => setDate(e.target.value)} style={ marginLeft: 10, padding: 5, borderColor: '#1A2650', borderRadius: 4 } />
+          <input type="date" value={date} onChange={e => setDate(e.target.value)} style={{ marginLeft: 10, padding: 5, borderColor: '#1A2650', borderRadius: 4 }} />
         </label>
         <br/><br/>
         <label><strong>Mode:</strong>
-          <select value={mode} onChange={e => setMode(e.target.value)} style={ marginLeft: 10, padding: 5, borderColor: '#1A2650', borderRadius: 4 }>
+          <select value={mode} onChange={e => setMode(e.target.value)} style={{ marginLeft: 10, padding: 5, borderColor: '#1A2650', borderRadius: 4 }}>
             <option value="Stock Order">Stock Order</option>
             <option value="Stock Status">Stock Status</option>
           </select>
@@ -107,7 +107,7 @@ function App() {
             <span>{item.name} ({item.unit})</span>
             <div>
               <button className="btn btn-minus" onClick={() => updateQty(idx, -1)}>-</button>
-              <span style={ margin: '0 10px' }>{item.qty}</span>
+              <span style={{ margin: '0 10px' }}>{item.qty}</span>
               <button className="btn btn-plus" onClick={() => updateQty(idx, 1)}>+</button>
             </div>
           </div>
