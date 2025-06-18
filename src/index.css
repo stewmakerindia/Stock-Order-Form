@@ -4,3 +4,64 @@ body {
   padding: 0;
   background: white;
 }
+.header {
+  padding: 15px 20px;
+  background-color: #1A2650;
+  color: white;
+}
+.controls label {
+  margin-right: 20px;
+}
+.container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+}
+.category-header {
+  margin-top: 25px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #C52229;
+  border-bottom: 2px solid #1A2650;
+  padding-bottom: 4px;
+}
+.item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 5px 0;
+  background: #f0f4ff;
+  border: 1px solid #1A2650;
+  border-radius: 6px;
+}
+.btn {
+  border: none;
+  padding: 5px 10px;
+  font-weight: bold;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-minus {
+  background: #1A2650;
+}
+.btn-plus {
+  background: #C52229;
+}
+.send-btn {
+  background: #25D366;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 20px;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 6px;
+}
+input[type=date], select {
+  margin-left: 10px;
+  padding: 5px;
+  border-color: #1A2650;
+  border-radius: 4px;
+}
