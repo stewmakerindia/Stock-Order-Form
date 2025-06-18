@@ -46,15 +46,7 @@ const dishItems = [
   { type: "header", label: "Desserts" },
   { type: "dish", name: "Payasam", qty: 0 },
   { type: "dish", name: "Coconut Jaggery Balls", qty: 0 },
-  { type: "dish", name: "Banana Fritters", qty: 0 },
-];
-  { type: "header", label: "Appams" },
-  { type: "dish", name: "Lace Appam", qty: 0 },
-  { type: "dish", name: "Flat Appam", qty: 0 },
-  { type: "dish", name: "Noodle Appam", qty: 0 },
-  { type: "dish", name: "Mini Appam", qty: 0 },
-  { type: "header", label: "Rice" },
-  { type: "dish", name: "Ghee Rice", qty: 0 }
+  { type: "dish", name: "Banana Fritters", qty: 0 }
 ];
 
 export default function App() {
@@ -76,9 +68,9 @@ export default function App() {
     const data = mode === "Dish Count" ? dishes : stock;
     const lines = data
       .filter(i => (i.type === "dish" || i.type === "item") && i.qty > 0)
-      .map(i => `${i.name}: ${i.qty}${i.unit ? " " + i.unit : ""}`);
-    const heading = `${mode} - ${location}`;
-    return `https://wa.me/?text=${encodeURIComponent(`${heading} (${date}):\n` + lines.join("\n"))}`;
+      .map(i => \`\${i.name}: \${i.qty}\${i.unit ? " " + i.unit : ""}\`);
+    const heading = \`\${mode} - \${location}\`;
+    return \`https://wa.me/?text=\${encodeURIComponent(\`\${heading} (\${date}):\n\` + lines.join("\n"))}\`;
   };
 
   const renderList = (data, isDish) =>
@@ -87,7 +79,7 @@ export default function App() {
         <h3 key={idx} className="category-header">{item.label}</h3>
       ) : (
         <div key={idx} className="item-row">
-          <span>{item.name}{item.unit ? ` (${item.unit})` : ""}</span>
+          <span>{item.name}{item.unit ? \` (\${item.unit})\` : ""}</span>
           <div>
             <button className="btn btn-minus" onClick={() => updateQty(idx, -1, data, isDish ? setDishes : setStock)}>-</button>
             <span style={{ margin: "0 10px" }}>{item.qty}</span>
