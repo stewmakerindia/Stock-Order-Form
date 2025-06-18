@@ -56,7 +56,7 @@ export default function App() {
   const [stock, setStock] = useState(stockItems);
   const [dishes, setDishes] = useState(dishItems);
 
-  const updateQty = (index, delta, source, setter) => {
+  const updateQty = (index, delta, data, setter) => {
     setter(prev => {
       const updated = [...prev];
       updated[index].qty = Math.max(0, updated[index].qty + delta);
@@ -68,9 +68,10 @@ export default function App() {
     const data = mode === "Dish Count" ? dishes : stock;
     const lines = data
       .filter(i => (i.type === "dish" || i.type === "item") && i.qty > 0)
-      .map(i => \`\${i.name}: \${i.qty}\${i.unit ? " " + i.unit : ""}\`);
-    const heading = \`\${mode} - \${location}\`;
-    return \`https://wa.me/?text=\${encodeURIComponent(\`\${heading} (\${date}):\n\` + lines.join("\n"))}\`;
+      .map(i => `${i.name}: ${i.qty}${i.unit ? " " + i.unit : ""}`);
+    const heading = `${mode} - ${location}`;
+    const message = `${heading} (${date}):\n` + lines.join("\n");
+    return "https://wa.me/?text=" + encodeURIComponent(message);
   };
 
   const renderList = (data, isDish) =>
@@ -79,7 +80,7 @@ export default function App() {
         <h3 key={idx} className="category-header">{item.label}</h3>
       ) : (
         <div key={idx} className="item-row">
-          <span>{item.name}{item.unit ? \` (\${item.unit})\` : ""}</span>
+          <span>{item.name}{item.unit ? ` (${item.unit})` : ""}</span>
           <div>
             <button className="btn btn-minus" onClick={() => updateQty(idx, -1, data, isDish ? setDishes : setStock)}>-</button>
             <span style={{ margin: "0 10px" }}>{item.qty}</span>
